@@ -203,3 +203,29 @@ Y se usan en la vista:
 ## Ejecutar otras rake tasks desde una rake task
 
 ## rails db:schema:load vs rails db:migrate
+
+## has_many sintaxis y bloque para extender el macro
+
+La sintaxis
+
+```ruby
+has_many(name, scope = nil, **options, &extension) public
+```
+
+Para darle un scope por defecto a la asociación
+
+```ruby
+has_many :comments, -> { where(author_id: 1) }
+```
+
+Extender su comportamiento para hacer algo más complejo
+
+```ruby
+has_many :children, :dependent => :destroy do
+  def at(time)
+    proxy_owner.children.find_with_deleted :all, :conditions => [
+      "created_at <= :time AND (deleted_at > :time OR deleted_at IS NULL)", { :time => time }
+    ]        
+  end      
+end
+```
