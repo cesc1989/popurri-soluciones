@@ -40,6 +40,31 @@ add_column :books, :user_id, :uuid
 
 ## Cómo escribir rake tasks con argumentos
 
+La sintaxis es así:
+
+```ruby
+task :name, [:arg_1, :arg_2] => :environment do |task, args|
+  # some code
+end
+```
+
+Ejemplo
+
+```ruby
+task :name, [:first_name, :last_name] => :environment do |t, args|
+  args.with_defaults(:first_name => "John", :last_name => "Dough")
+  
+  puts "First name is #{args[:first_name]}"
+  puts "Last  name is #{args[:last_name]}"
+end
+```
+
+De esta forma se ejecuta
+
+```bash
+rake name[Francisco,Quintero]
+```
+
 ## Cómo saber si un string tiene números con SQL
 
 ## Cómo Configurar GitHub Actions para correr RSpec
