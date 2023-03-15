@@ -142,6 +142,26 @@ web: bundle exec puma -C config/puma.rb
 
 ## Cómo Reiniciar Base de Datos PostgreSQL en Heroku
 
+De esta forma no funciona
+
+```
+heroku run rake rails db:drop
+```
+
+Se hace así
+
+```
+heroku pg:reset DATABASE
+```
+
+O así para evitar el paso de confirmación de la app
+
+```
+heroku pg:reset DATABASE --confirm NOMBRE-DE-APP
+```
+
+[Fuente](https://otroespacioblog.wordpress.com/2019/11/08/como-reiniciar-base-de-datos-postgresql-en-heroku/).
+
 ## Cómo Agregar Ejecutables al PATH en Linux
 
 ## Cómo traducir enums con i18n
