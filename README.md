@@ -38,6 +38,8 @@ Al modificar columna se usa como tipo de dato:
 add_column :books, :user_id, :uuid
 ```
 
+[Fuente](https://otroespacioblog.wordpress.com/2022/10/03/como-configurar-llave-primaria-como-uuid-en-rails/).
+
 ## Cómo escribir rake tasks con argumentos
 
 La sintaxis es así:
@@ -64,6 +66,8 @@ De esta forma se ejecuta
 ```bash
 rake name[Francisco,Quintero]
 ```
+
+[Fuente](https://otroespacioblog.wordpress.com/2022/10/01/como-escribir-rake-tasks-con-argumentos/).
 
 ## Cómo saber si un string tiene números con SQL
 
