@@ -166,6 +166,38 @@ heroku pg:reset DATABASE --confirm NOMBRE-DE-APP
 
 ## Cómo traducir enums con i18n
 
+Primero que nada, tener configurado el idioma en `config/application.rb`
+
+```ruby
+config.i18n.default_locale = :es
+```
+
+Para un enum:
+
+```ruby
+class Pqr < ApplicationRecord
+  enum status: { unassigned: 0, assigned: 1, closed: 2 }
+end
+```
+
+Se configura la traducción así:
+
+```ruby
+
+# config/locales/es.yml
+es:
+  pqr_status:
+    unassigned: 'Sin asignar'
+    assigned: 'Asignado'
+    closed: 'Cerrado'
+```
+
+Y se usan en la vista:
+
+```ruby
+<%= I18n.t(:"pqr_status.#{pqr.status}") %>
+```
+
 ## Cómo sobreescribir un método dado por un atributo de ActiveRecord
 
 ## Ejecutar otras rake tasks desde una rake task
