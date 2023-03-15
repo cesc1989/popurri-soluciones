@@ -2,6 +2,8 @@
 
 Popurri de soluciones a cosas de Ruby y Rails.
 
+Repo para la presentación del meetup Ruby Baq del 28 de Marzo.
+
 ## 1. Cómo configurar llave primaria como UUID en Rails
 
 Activamos pg_crypto:
