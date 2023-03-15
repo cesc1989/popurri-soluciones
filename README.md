@@ -129,6 +129,17 @@ De esta forma sí obtenemos resultados.
 
 ## Cómo Correr Migraciones Durante Despliegue de Aplicación Rails en Heroku
 
+Se hace en el _release phase_ indicando en un archivo Procfile.
+
+```
+# Procfile
+ 
+release: bundle exec rails db:migrate
+web: bundle exec puma -C config/puma.rb
+```
+
+[Fuente](https://otroespacioblog.wordpress.com/2019/11/10/como-correr-migraciones-durante-despliegue-de-aplicacion-rails-en-heroku/).
+
 ## Cómo Reiniciar Base de Datos PostgreSQL en Heroku
 
 ## Cómo Agregar Ejecutables al PATH en Linux
