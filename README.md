@@ -71,6 +71,60 @@ rake name[Francisco,Quintero]
 
 ## Cómo saber si un string tiene números con SQL
 
+Con un string de esta forma "1" en vez de "I am Cristianu Runalduu"
+
+Primer intento
+
+```sql
+SELECT id, form_id, content
+FROM answers
+WHERE content LIKE '%[0-9]%';
+ 
+ id | form_id | content 
+----+---------+---------
+(0 rows)
+```
+
+Cambiando un poco la forma para asegurarnos que la expresión funciona
+
+```sql
+SELECT id, form_id, content
+FROM answers
+WHERE content NOT LIKE '%[0-9]%'
+LIMIT 10;
+ 
+  id  | form_id |                                                            content                                                             
+------+---------+--------------------------------------------------------------------------------------------------------------------------------
+ 1339 |       6 | I have no pain at the moment
+ 1341 |       6 | I can lift heavy weights but it gives extra pain
+ 1342 |       6 | Pain prevents me from walking more than 1 mile
+ 1343 |       6 | I can only sit in my favourite chair as long as I like
+ 1344 |       6 | Pain prevents me from standing for more than 1 hour
+ 1345 |       6 | My sleep is occasionally disturbed by pain
+```
+
+Pero la solución es de otra forma
+
+```sql
+SELECT id,content,REGEXP_MATCHES(content, '[[:digit:]]')
+FROM answers
+WHERE option_choice_id IS NULL;
+ 
+  id  |                            content                             | regexp_matches 
+------+----------------------------------------------------------------+----------------
+ 1342 | Pain prevents me from walking more than 1 mile                 | {1}
+ 1344 | Pain prevents me from standing for more than 1 hour            | {1}
+   29 | My sleep is slightly disturbed (less than 1 hr sleepless)      | {1}
+   24 | I can read as much as I want to with slight pain in my neck 2  | {2}
+  276 | 2                                                              | {2}
+  287 | 3                                                              | {3}
+   44 | Pain prevents me from walking more than 1/2 mile               | {1}
+```
+
+De esta forma sí obtenemos resultados.
+
+[Fuente](https://otroespacioblog.wordpress.com/2022/09/30/como-saber-si-un-string-tiene-numeros-con-sql/).
+
 ## Cómo Configurar GitHub Actions para correr RSpec
 
 ## Cómo Correr Migraciones Durante Despliegue de Aplicación Rails en Heroku
