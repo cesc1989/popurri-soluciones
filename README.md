@@ -204,6 +204,21 @@ Y se usan en la vista:
 
 ## rails db:schema:load vs rails db:migrate
 
+¿Qué diferencia hay entre estos dos comandos al momento de iniciar/configurar un proyecto?
+
+La principal diferencia es que `rails db:schema:load` debe usarse unicamente la primera vez que se inicie el sistema. Sea local o en producción.
+
+**Este comando es destructivo.** Si lo ejecutas en un ambiente con datos, vas a perder todo lo que haya en la base de datos.
+
+Usa `rails db:migrate` para ir agregando nuevas modificaciones a la base de datos.
+
+**Conclusión**
+
+- Primer vez que carga el sistema: `rails db:schema:load`
+- De ahí en adelante, solo `rails db:migrate`
+
+[Fuente](https://stackoverflow.com/a/5905958/1407371).
+
 ## has_many sintaxis y bloque para extender el macro
 
 La sintaxis
