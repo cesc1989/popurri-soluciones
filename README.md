@@ -127,6 +127,49 @@ De esta forma sí obtenemos resultados.
 
 ## Cómo Configurar GitHub Actions para correr RSpec
 
+```yaml
+env:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  RAILS_ENV: test
+ 
+name: Rails tests
+on: [push, pull_request]
+jobs:
+  rspec-test:
+    name: RSpec
+    runs-on: ubuntu-18.04
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: nsac_testing
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.1
+          bundler-cache: true
+      - name: Install postgres client
+        run: sudo apt-get install libpq-dev
+      - name: Prepare database
+        run: bundler exec rails db:prepare RAILS_ENV=test
+      - name: Run tests
+        run: bundler exec rake
+```
+
+[Fuente](https://otroespacioblog.wordpress.com/2021/04/28/como-configurar-github-actions-para-correr-rspec/).
+
 ## Cómo Correr Migraciones Durante Despliegue de Aplicación Rails en Heroku
 
 Se hace en el _release phase_ indicando en un archivo Procfile.
