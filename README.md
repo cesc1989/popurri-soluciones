@@ -202,6 +202,26 @@ Y se usan en la vista:
 
 ## Ejecutar otras rake tasks desde una rake task
 
+Así:
+
+```ruby
+namespace :production_bootstrap do
+  desc 'Setup production'
+  task :run_all do
+    Rake::Task['categories:run_all'].invoke
+    Rake::Task['categories:create_for_suppliers'].invoke
+    Rake::Task['infractions:create_types'].invoke
+    Rake::Task['vehicles:run_all'].invoke
+    Rake::Task['cities:create_basic_cities'].invoke
+    Rake::Task['countries:create_countries'].invoke
+    Rake::Task['admins_and_owners:create_admins'].invoke
+    Rake::Task['admins_and_owners:create_owners'].invoke
+  end
+end
+```
+
+[Fuente](https://stackoverflow.com/a/1290119/1407371).
+
 ## rails db:schema:load vs rails db:migrate
 
 ¿Qué diferencia hay entre estos dos comandos al momento de iniciar/configurar un proyecto?
