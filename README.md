@@ -1,6 +1,6 @@
 # Popurrí de soluciones en Ruby y en Rails 
 
-Popurri de soluciones a cosas de Ruby y Rails.
+Popurri de soluciones a cosas que pueden pasar al trabajar con Ruby y con Rails.
 
 Repo para la presentación del meetup Ruby Baq del 28 de Marzo.
 
