@@ -207,6 +207,20 @@ heroku pg:reset DATABASE --confirm NOMBRE-DE-APP
 
 ## Cómo Agregar Ejecutables al PATH en Linux
 
+Tenemos un paquete en esta ruta:
+
+```
+/home/cesc/Desktop/Postman
+```
+
+Se agrega al PATH así:
+
+```bash
+# .profile
+
+export PATH=$HOME/Desktop/Postman:$PATH
+```
+
 ## Cómo traducir enums con i18n
 
 Primero que nada, tener configurado el idioma en `config/application.rb`
