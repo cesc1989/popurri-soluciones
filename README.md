@@ -257,6 +257,8 @@ Y se usan en la vista:
 <%= I18n.t(:"pqr_status.#{pqr.status}") %>
 ```
 
+[Fuente](https://stackoverflow.com/a/23104850/1407371).
+
 ## Cómo sobreescribir un método dado por un atributo de ActiveRecord
 
 De esta forma
@@ -345,3 +347,5 @@ has_many :children, :dependent => :destroy do
   end      
 end
 ```
+
+[Fuente](https://apidock.com/rails/ActiveRecord/Associations/ClassMethods/has_many).
