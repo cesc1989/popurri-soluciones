@@ -197,7 +197,7 @@ Se hace así
 heroku pg:reset DATABASE
 ```
 
-O así para evitar el paso de confirmación de la app
+Así para evitar el paso de confirmación de la app
 
 ```
 heroku pg:reset DATABASE --confirm NOMBRE-DE-APP
@@ -220,6 +220,8 @@ Se agrega al PATH así:
 
 export PATH=$HOME/Desktop/Postman:$PATH
 ```
+
+[Fuente](https://otroespacioblog.wordpress.com/2017/05/14/como-agregar-ejecutables-al-path-en-linux/).
 
 ## Cómo traducir enums con i18n
 
