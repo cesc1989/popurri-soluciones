@@ -259,6 +259,28 @@ Y se usan en la vista:
 
 ## Cómo sobreescribir un método dado por un atributo de ActiveRecord
 
+De esta forma
+
+```ruby
+def plate
+  self[:plate].upcase
+end
+```
+
+Otra forma
+
+```ruby
+def name=(name)
+  write_attribute(:name, name.capitalize)
+end
+
+def name
+  read_attribute(:name).downcase  # No test for nil?
+end
+```
+
+[Fuente](https://stackoverflow.com/questions/373731/override-activerecord-attribute-methods).
+
 ## Ejecutar otras rake tasks desde una rake task
 
 Así:
