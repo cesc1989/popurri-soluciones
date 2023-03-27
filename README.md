@@ -322,6 +322,52 @@ Usa `rails db:migrate` para ir agregando nuevas modificaciones a la base de dato
 
 [Fuente](https://stackoverflow.com/a/5905958/1407371).
 
+## RSpec envía string vacíos en lugar de `nil`
+
+En vez de enviar algo como:
+
+```ruby
+{
+  boolean_field: true
+}
+```
+
+Manda:
+
+```ruby
+{
+  boolean_field: "true"
+}
+```
+
+Una prueba de una petición así:
+
+```ruby
+post(
+  "#{base_api_url}/plans_of_care",
+  params: { data: { physician_ids: [] } }
+)
+```
+
+Envía:
+
+```ruby
+(byebug) physician_ids
+[""]
+```
+
+La solución:
+
+```ruby
+post(
+  "#{base_api_url}/plans_of_care",
+  params: { data: { physician_ids: [] } },
+  as: :json
+)
+```
+
+[Fuente](https://github.com/rspec/rspec-rails/issues/2021)
+
 ## has_many sintaxis y bloque para extender el macro
 
 La sintaxis
